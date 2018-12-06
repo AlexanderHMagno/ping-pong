@@ -11,6 +11,7 @@ export default class Game {
 		this.element = element;
 		this.width = width;
 		this.height = height;
+		this.pause = false;
 
 
 		//paddle instruction 
@@ -51,13 +52,25 @@ export default class Game {
 			PROPIEDADES.ballRadius,
 			this.width,
 			this.height,
+		);
 
-		)
+ 
+			document.addEventListener('keydown', event => {
+				switch(event.key){
+					case KEYS.spaceBar:
+					this.pause=!this.pause;
+					break;
+				}
+			});
 
 	}
 
 	render() {
 		// More code goes here...
+
+		if(this.pause) {
+			return;
+		} else{
 		this.gameElement.innerHTML = '';
 		let svg = document.createElementNS(SVG_NS, 'svg');
 		svg.setAttributeNS(null, 'width', this.width);
@@ -68,8 +81,8 @@ export default class Game {
 		this.board.render(svg);
 		this.player1.render(svg);
 		this.player2.render(svg);
-		this.ballGame.render(svg);
-
+		this.ballGame.render(svg, this.player1 , this.player2);
+		}
 	}
 
 }

@@ -5,7 +5,7 @@ export default class Paddle{
 
     constructor (height, width, paddleHeight,boardGap,position,up,down){
     this.height = height;
-    this.width = width;
+    this.paddlewidth = width;
     this.paddleHeight = paddleHeight;
     this.boardGap = boardGap;
     this.position = position;
@@ -32,17 +32,25 @@ export default class Paddle{
      
     }
 
+    coordinates(){
+        const leftX =this.boardGap; 
+        const rightX = this.boardGap+ this.paddlewidth;
+        const topY = this.position;
+        const bottomY = this.position + this.paddleHeight;
+        return [leftX, rightX,topY,bottomY];
+
+    }
+
     render(svg){
    
         let rect = document.createElementNS(SVG_NS, 'rect');
 		rect.setAttributeNS(null, 'height', this.paddleHeight);
-		rect.setAttributeNS(null, 'width', this.width);
+		rect.setAttributeNS(null, 'width', this.paddlewidth);
 		rect.setAttributeNS(null, 'x', this.boardGap);
         rect.setAttributeNS(null, 'y', this.position);
         rect.setAttributeNS(null, 'fill', this.colorPaddle);
 		rect.setAttributeNS(null, 'up', this.up);
 		rect.setAttributeNS(null, 'down', this.down);
-       
         svg.appendChild(rect);
 
 
