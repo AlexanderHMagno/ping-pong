@@ -9,6 +9,7 @@ export default class Ball {
         this.height = height;
         this.color = "white";
         this.reset();
+        this.ping = new Audio("public/sounds/pong-02.wav");
 }
 
     reset() {
@@ -45,7 +46,9 @@ export default class Ball {
        &&(this.y <=bottom)
        &&(this.y >= top);
         if(hit){
+            
             this.vx*= -1;
+            this.ping.play();
         }
 
         } else {
@@ -55,21 +58,25 @@ export default class Ball {
         &&(this.y >= top);
          if(hit){
              this.vx*= -1;
+             this.ping.play();
         }
     }
     }
 
     checkScore(player1,player2){
+
+       /* console.log(player1.score,"PLAYER1");
+        console.log(player2.score,"PLAYER2");*/
         const hitLeft = (this.x - PROPIEDADES.ballRadius <= 0) ;
         const hitRight = (this.x + PROPIEDADES.ballRadius>= this.width) ;
         
         if(hitLeft){
-            player2.score++;
-           this.reset();
+            player2.increaseScore();
+            this.reset();
             PROPIEDADES.ballDirection*= -1;
 
         }else if (hitRight){
-            player1.score++;
+            player1.increaseScore();
             this.reset();
             PROPIEDADES.ballDirection*= -1;
         }
@@ -78,7 +85,7 @@ export default class Ball {
 
     colorBall(){
          
-        var paleta = ["golden","yellow","red"];
+        var paleta = ["green","red"];
         var paletaColor = paleta[Math.floor(Math.random()*(paleta.length))]
         this.color = paletaColor;
        

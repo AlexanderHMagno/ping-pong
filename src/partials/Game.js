@@ -3,6 +3,7 @@ import {SVG_NS, KEYS , PROPIEDADES} from '../settings'
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
+import Score from './Score';
 
 
 export default class Game {
@@ -54,6 +55,29 @@ export default class Game {
 			this.height,
 		);
 
+		/*
+		this.ballGame1 = new Ball(
+			PROPIEDADES.ballRadius,
+			this.width,
+			this.height,
+		);*/
+
+		this.Score1 = new Score(
+			
+		   this.width*0.25,
+		   this.height/3,
+		   
+		   
+		)
+
+		this.Score2 = new Score(
+			
+			this.width*0.75,
+			this.height/3,
+		 )
+
+		
+
  
 			document.addEventListener('keydown', event => {
 				switch(event.key){
@@ -82,6 +106,10 @@ export default class Game {
 		this.player1.render(svg);
 		this.player2.render(svg);
 		this.ballGame.render(svg, this.player1 , this.player2);
+		this.Score1.render(svg,this.player1.getScore());
+		this.Score2.render(svg,this.player2.getScore());
+
+	//	this.ballGame1.render(svg, this.player1 , this.player2);
 		}
 	}
 

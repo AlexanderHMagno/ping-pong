@@ -12,6 +12,7 @@ export default class Paddle{
     this.up = up;
     this.down = down;
     this.colorPaddle = 'white';
+    this.score = PROPIEDADES.score;
    
     
     document.addEventListener('keydown', event => {
@@ -30,6 +31,14 @@ export default class Paddle{
         }
       });
      
+    }
+    increaseScore(){
+
+        this.score++
+    }
+
+    getScore(){
+        return this.score;
     }
 
     coordinates(){
