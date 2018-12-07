@@ -9,6 +9,8 @@ export default class Score{
     
   }
 
+  
+
     render(svg,score){
    
         let text = document.createElementNS(SVG_NS, 'text');
