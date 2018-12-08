@@ -55,21 +55,31 @@ export default class Game {
 			PROPIEDADES.ballRadius,
 			this.width,
 			this.height,
-		);
+			"blue",
+			1,
+		)
 
-		/*
 		this.ballGame1 = new Ball(
-			PROPIEDADES.ballRadius,
+			PROPIEDADES.ballRadius+10,
 			this.width,
 			this.height,
-		);*/
+			"blue",
+			1,
+		)
+
+		this.ballGame2 = new Ball(
+			PROPIEDADES.ballRadius+8,
+			this.width,
+			this.height,
+			"green",
+			-1,
+		)
 
 		this.Score1 = new Score(
 			
 		   this.width*0.25,
 		   this.height/3,
-		   
-		   
+		   	   
 		)
 
 		this.Score2 = new Score(
@@ -98,6 +108,10 @@ export default class Game {
 	}
 
 	
+	
+
+		
+
 	stops(){
 		this.pause = true;
 		this.player1.score = 0;
@@ -129,6 +143,16 @@ export default class Game {
 		this.ballGame.render(svg, this.player1 , this.player2);
 		this.Score1.render(svg,this.player1.getScore());
 		this.Score2.render(svg,this.player2.getScore());
+
+//balls creator rendering
+
+		if(this.player1.score>=1&&this.player1.score<5){
+           this.ballGame1.render(svg, this.player1 , this.player2);
+		} else if (this.player1.score>=5){
+			this.ballGame2.render(svg, this.player1 , this.player2);
+			this.ballGame1.render(svg, this.player1 , this.player2);
+			
+		}
        
 		if (this.player1.score ===PROPIEDADES.maxPoint||this.player2.score === PROPIEDADES.maxPoint) {						
 			this.winnerGame.render(svg,this.player1.score,this.player2.score)

@@ -33,9 +33,9 @@ export default class Paddle{
       });
      
     }
-    increaseScore(){
+    increaseScore(val){
 
-        this.score++
+        this.score+=val;
     }
 
     getScore(){

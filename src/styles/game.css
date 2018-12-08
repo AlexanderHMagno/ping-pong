@@ -69,10 +69,14 @@ table {
 
 html {
   font-size: 16px;
+  color: white;
 }
 
 body {
-  align-items: center;
+
+  background-color:black;
+  /*background-image: linear-gradient(rgba(0, 0, 0, 0.514),rgba(0, 0, 0, 0.514)), url("../../public/images/match.jpg");
+  */align-items: center;
   display: flex;
   font-family: 'Silkscreen Web', monotype;
   height: 100vh;

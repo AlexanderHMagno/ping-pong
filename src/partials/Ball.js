@@ -2,15 +2,17 @@ import {SVG_NS, PROPIEDADES} from '../settings'
 
 export default class Ball {
 
-    constructor (radius, width, height) {
+    constructor (radius, width, height,color,value) {
 
         this.radius = radius;
         this.width = width;
         this.height = height;
-        this.color = "white";
-        this.reset();
+        this.color = color;
+        this.value= value;
         this.ping = new Audio("public/sounds/pong-01.wav");
-        this.pingSound = new Audio("public/sounds/sound.mp3");
+        this.ballStart = new Audio("public/sounds/balllauncher.mp3");
+        this.reset();
+        
 }
 
     reset() {
@@ -23,6 +25,7 @@ export default class Ball {
             this.vy = Math.floor(Math.random() * 10 - 5);}
         
         this.vx = PROPIEDADES.ballDirection * (6 - Math.abs(this.vy));
+        this.ballStart.play();
         
     }
 
@@ -72,12 +75,12 @@ export default class Ball {
         const hitRight = (this.x + PROPIEDADES.ballRadius>= this.width) ;
         
         if(hitLeft){
-            player2.increaseScore();
+            player2.increaseScore(this.value);
             this.reset();
             PROPIEDADES.ballDirection*= -1;
 
         }else if (hitRight){
-            player1.increaseScore();
+            player1.increaseScore(this.value);
             this.reset();
             PROPIEDADES.ballDirection*= -1;
         }
@@ -105,6 +108,6 @@ export default class Ball {
         this.wallCollision();
         this.paddleCollision(player1,player2);
         this.checkScore(player1, player2);
-        this.colorBall();
+       // this.colorBall();
     }
 }
