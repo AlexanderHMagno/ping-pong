@@ -19,4 +19,5 @@ export const KEYS = {
     ballRadius: 8,     
     spaceBar: ' ', 
     ballDirection: 1,
+    maxPoint:1,  //value of the score to be the winner
   }

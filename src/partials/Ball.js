@@ -9,7 +9,8 @@ export default class Ball {
         this.height = height;
         this.color = "white";
         this.reset();
-        this.ping = new Audio("public/sounds/pong-02.wav");
+        this.ping = new Audio("public/sounds/pong-01.wav");
+        this.pingSound = new Audio("public/sounds/sound.mp3");
 }
 
     reset() {

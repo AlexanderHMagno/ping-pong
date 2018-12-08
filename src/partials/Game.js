@@ -4,6 +4,7 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
+import Winner from './winner';
 
 
 export default class Game {
@@ -13,6 +14,7 @@ export default class Game {
 		this.width = width;
 		this.height = height;
 		this.pause = false;
+		
 
 
 		//paddle instruction 
@@ -76,6 +78,10 @@ export default class Game {
 			this.height/3,
 		 )
 
+		 this.winnerGame = new Winner(
+
+		 )
+
 		
 
  
@@ -87,7 +93,22 @@ export default class Game {
 				}
 			});
 
+ 
+
 	}
+
+	
+	stops(){
+		this.pause = true;
+		this.player1.score = 0;
+			this.player2.score = 0;
+	 }
+
+	 resetGame(){
+								
+			this.stops();
+			
+	 }
 
 	render() {
 		// More code goes here...
@@ -101,16 +122,22 @@ export default class Game {
 		svg.setAttributeNS(null, 'height', this.height);
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
 		this.gameElement.appendChild(svg);
-
+		
 		this.board.render(svg);
-		this.player1.render(svg);
-		this.player2.render(svg);
+		this.player1.render(svg, this.player2);
+		this.player2.render(svg, this.player1);
 		this.ballGame.render(svg, this.player1 , this.player2);
 		this.Score1.render(svg,this.player1.getScore());
 		this.Score2.render(svg,this.player2.getScore());
-
-	//	this.ballGame1.render(svg, this.player1 , this.player2);
+       
+		if (this.player1.score ===PROPIEDADES.maxPoint||this.player2.score === PROPIEDADES.maxPoint) {						
+			this.winnerGame.render(svg,this.player1.score,this.player2.score)
+		    this.resetGame();
 		}
+			
+		}
+	//	this.ballGame1.render(svg, this.player1 , this.player2);
+		
 	}
 
 }

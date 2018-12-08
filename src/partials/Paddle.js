@@ -13,6 +13,7 @@ export default class Paddle{
     this.down = down;
     this.colorPaddle = 'white';
     this.score = PROPIEDADES.score;
+    this.ping = new Audio("public/sounds/pong-04.wav");
    
     
     document.addEventListener('keydown', event => {
@@ -41,6 +42,17 @@ export default class Paddle{
         return this.score;
     }
 
+   /* getWinner(player){
+        if (this.score === 2){
+            this.ping.play();
+            this.score="this player wins";
+            this.score=0;
+            player.score =0;
+        }
+   }
+*/
+  
+
     coordinates(){
         const leftX =this.boardGap; 
         const rightX = this.boardGap+ this.paddlewidth;
@@ -61,6 +73,8 @@ export default class Paddle{
 		rect.setAttributeNS(null, 'up', this.up);
 		rect.setAttributeNS(null, 'down', this.down);
         svg.appendChild(rect);
+       // this.getWinner(player)
+        
 
 
     }

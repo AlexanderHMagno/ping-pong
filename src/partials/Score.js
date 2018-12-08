@@ -9,7 +9,7 @@ export default class Score{
     
   }
 
-  
+
 
     render(svg,score){
    
