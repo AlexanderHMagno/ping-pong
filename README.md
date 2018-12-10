@@ -54,3 +54,13 @@ the score of the player if the player let it pass.
 * At the end of the game it will show a message and also it will play a sound let them know who won the game. 
 * See the winner file. 
 
+*Increse the size of the paddle*
+
+* 
+			// increase the size of the paddle.
+			if(this.player1.score  === PROPIEDADES.maxPoint - (PROPIEDADES.maxPoint/10)){
+				this.player2.increaseSize();
+			} else if (this.player2.score  === PROPIEDADES.maxPoint - (PROPIEDADES.maxPoint/10)){
+				this.player1.increaseSize();
+			}
+
