@@ -1,12 +1,11 @@
-import {SVG_NS , BACK_COLOR, PROPIEDADES} from '../settings'
+import {SVG_NS , WinnerValues, PROPIEDADES} from '../settings'
 
 
 
 export default class Winner{
     constructor(x, y) {
-    this.x = 85
-    ;
-    this.y = 130;
+    this.x = WinnerValues.Height;
+    this.y = WinnerValues.Width;
     this.pingp1= new Audio("public/sounds/player1.mp3");
     this.pingp2= new Audio("public/sounds/player2.mp3");
     

@@ -1,5 +1,5 @@
 /* with this we are importing the variable from setting*/
-import {SVG_NS, KEYS , PROPIEDADES} from '../settings'
+import {SVG_NS, KEYS , PROPIEDADES, BallProperties,PaddleProperties} from '../settings'
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
@@ -15,13 +15,6 @@ export default class Game {
 		this.width = width;
 		this.height = height;
 		this.pause = false;
-		
-
-
-		//paddle instruction 
-
-		
-
 
 		// Other code goes here...
 		this.gameElement = document.getElementById(this.element);
@@ -34,26 +27,26 @@ export default class Game {
 
 		this.player1 = new Paddle(
 			this.height,
-			PROPIEDADES.paddleWidth,
-			PROPIEDADES.paddleHeight,
-			PROPIEDADES.boardGap,
-			((this.height - PROPIEDADES.paddleHeight) / 2),
+			PaddleProperties.paddleWidth,
+			PaddleProperties.paddleHeight,
+			PaddleProperties.boardGap,
+			((this.height - PaddleProperties.paddleHeight) / 2),
 			KEYS.p1Up,
 			KEYS.p1Down);
 
 		this.player2 = new Paddle(
 			this.height,
-			PROPIEDADES.paddleWidth,
-			PROPIEDADES.paddleHeight,
-			(this.width - PROPIEDADES.boardGap - PROPIEDADES.paddleWidth),
-			((this.height - PROPIEDADES.paddleHeight) / 2),
+			PaddleProperties.paddleWidth,
+			PaddleProperties.paddleHeight,
+			(this.width - PaddleProperties.boardGap - PaddleProperties.paddleWidth),
+			((this.height - PaddleProperties.paddleHeight) / 2),
 			KEYS.p2Up,
 			KEYS.p2Down);
 
 		//initializa ball
 
 		this.ballGame = new Ball(
-			PROPIEDADES.ballRadius,
+			BallProperties.ballRadius,
 			this.width,
 			this.height,
 			"white",
@@ -61,7 +54,7 @@ export default class Game {
 		)
 
 		this.ballGame1 = new Ball(
-			PROPIEDADES.ballRadius+10,
+			BallProperties.ballRadius+10,
 			this.width,
 			this.height,
 			"white",
@@ -69,7 +62,7 @@ export default class Game {
 		)
 
 		this.ballGame2 = new Ball(
-			PROPIEDADES.ballRadius+8,
+			BallProperties.ballRadius+8,
 			this.width,
 			this.height,
 			"green",
@@ -96,21 +89,17 @@ export default class Game {
 		 this.laser1 = new Laser(
 			this.width,
 			this.height,
-			PROPIEDADES.boardGap,
+			PaddleProperties.boardGap,
 			KEYS.p1Right,
 		 )
 
 		 this.laser2 = new Laser(
 			this.width,
 			this.height,
-			(this.width - PROPIEDADES.boardGap - PROPIEDADES.paddleWidth),
+			(this.width),
 			KEYS.p2Right,
 		 )
 
-
-		
-
- 
 			document.addEventListener('keydown', event => {
 				switch(event.key){
 					case KEYS.spaceBar:
@@ -118,15 +107,7 @@ export default class Game {
 					break;
 				}
 			});
-
- 
-
 	}
-
-	
-	
-
-		
 
 	stops(){
 		this.pause = true;
@@ -135,14 +116,11 @@ export default class Game {
 	 }
 
 	 resetGame(){
-								
 			this.stops();
-			
-	 }
+ }
 
 	render() {
 		// More code goes here...
-
 		if(this.pause) {
 			return;
 		} else{
@@ -165,11 +143,11 @@ export default class Game {
 		this.laser1.render(svg, this.player1 , this.player2 ,this.ballGame,this.ballGame1,this.ballGame2);
 		this.laser2.render(svg, this.player1 , this.player2 ,this.ballGame,this.ballGame1,this.ballGame2);
 
-//balls creator rendering
+        //balls creator rendering
 
-		if(this.player1.score>=1&&this.player1.score<5){
+		if(this.player1.score>=BallProperties.secondBall&&this.player1.score<BallProperties.thirdBall){
            this.ballGame1.render(svg, this.player1 , this.player2);
-		} else if (this.player1.score>=5){
+		} else if (this.player1.score>=BallProperties.thirdBall){
 			this.ballGame2.render(svg, this.player1 , this.player2);
 			this.ballGame1.render(svg, this.player1 , this.player2);
 			

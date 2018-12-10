@@ -1,4 +1,4 @@
-import {SVG_NS, PROPIEDADES, KEYS} from '../settings'
+import {SVG_NS, PaddleProperties, KEYS} from '../settings'
 
 export default class Laser {
 
@@ -22,9 +22,7 @@ export default class Laser {
 
 position(player1,player2){
 
-
-
-    if (this.xInitial === PROPIEDADES.boardGap) {
+    if (this.xInitial === PaddleProperties.boardGap) {
        
    const [left,right,top,bottom] =  player1.coordinates();
    this.top  = top + 20;
@@ -40,31 +38,24 @@ position(player1,player2){
        
 }
 
-
 reset(player1,player2){
 
-    
     this.x1 =this.xInitial;
     this.x2 =this.xInitial;
     this.vx = 0;
 
-    if (this.xInitial === PROPIEDADES.boardGap) {
+    if (this.xInitial === PaddleProperties.boardGap) {
     player1.increaseScore(1);}
-
     else {player2.increaseScore(1);}
-        
-
-
-   }
+  }
 
 
 movement(){
      
-    if (this.xInitial === PROPIEDADES.boardGap){
+    if (this.xInitial === PaddleProperties.boardGap){
         document.addEventListener('keydown', event => {
             switch(event.key){
                 case (this.up):
-                
                 this.x1 = this.xInitial;
             this.x2 = this.xInitial + 5;
             this.vx = 1;
@@ -124,13 +115,7 @@ else if(this.x2-ball2.radius-increase_area<=ball2.x
 
 }
 
-      
-			
-      
-    
-    
-
-    render(svg, player1, player2, ball1,ball2,ball3){
+render(svg, player1, player2, ball1,ball2,ball3){
         let line =document.createElementNS(SVG_NS,'line');
         line.setAttributeNS(null, 'x1',this.x1);
         line.setAttributeNS(null, 'x2',this.x2);

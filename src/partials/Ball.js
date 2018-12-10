@@ -1,4 +1,4 @@
-import {SVG_NS, PROPIEDADES} from '../settings'
+import {SVG_NS,BallProperties} from '../settings'
 
 export default class Ball {
 
@@ -27,18 +27,18 @@ export default class Ball {
         while(this.vy===0){
             this.vy = Math.floor(Math.random() * 10 - 5);}
         
-        this.vx = PROPIEDADES.ballDirection * (6 - Math.abs(this.vy));
+        this.vx = BallProperties.ballDirection * (6 - Math.abs(this.vy));
         
         
     }
 
     wallCollision(){
 
-        const hitLeft = (this.x - PROPIEDADES.ballRadius <= 0) ;
-        const hitRight = (this.x + PROPIEDADES.ballRadius>= this.width) ;
-        const hitTop =(this.y - PROPIEDADES.ballRadius <=0);
+        const hitLeft = (this.x - BallProperties.ballRadius <= 0) ;
+        const hitRight = (this.x + BallProperties.ballRadius>= this.width) ;
+        const hitTop =(this.y - BallProperties.ballRadius <=0);
         
-        const hitBottom =  (this.y + PROPIEDADES.ballRadius>= this.height);
+        const hitBottom =  (this.y + BallProperties.ballRadius>= this.height);
         if(hitTop||hitBottom){
             this.vy*= -1;
         }else if(hitLeft||hitRight){
@@ -66,7 +66,6 @@ export default class Ball {
                 }
 
             this.ping.play();
-
             
         }
         } else {
@@ -94,20 +93,19 @@ export default class Ball {
 
        /* console.log(player1.score,"PLAYER1");
         console.log(player2.score,"PLAYER2");*/
-        const hitLeft = (this.x - PROPIEDADES.ballRadius <= 0) ;
-        const hitRight = (this.x + PROPIEDADES.ballRadius>= this.width) ;
+        const hitLeft = (this.x - BallProperties.ballRadius <= 0) ;
+        const hitRight = (this.x + BallProperties.ballRadius>= this.width) ;
         
         if(hitLeft){
             player2.increaseScore(this.value);
             this.reset();
-            PROPIEDADES.ballDirection*= -1;
+            BallProperties.ballDirection*= -1;
 
         }else if (hitRight){
             player1.increaseScore(this.value);
             this.reset();
-            PROPIEDADES.ballDirection*= -1;
+            BallProperties.ballDirection*= -1;
         }
-
     }
 
     colorBall(){
@@ -115,11 +113,7 @@ export default class Ball {
         var paleta = ["#c03dc0","#800080","#f594f5"];
         var paletaColor = paleta[Math.floor(Math.random()*(paleta.length))]
         this.color = paletaColor;
-
-
-       
-        
-    }
+   }
 
     render(svg, player1, player2){
         let circle =document.createElementNS(SVG_NS,'circle');

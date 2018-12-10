@@ -13,13 +13,27 @@ export const KEYS = {
   }
 
   export const PROPIEDADES = {
-    speed: 20,        // paddle movement
     score: 0,        // score for each player
+    maxPoint:10,  //value of the score to be the winner
+  }
+
+  export const WinnerValues = { 
+    Height: 85,
+    Width :130,
+  }
+
+  export const BallProperties = { 
+
+    secondBall : 1,
+    thirdBall:5,
+    ballRadius: 8,
+    ballDirection: 1,
+
+  }
+
+  export const PaddleProperties = {
+    speed: 20,
     boardGap: 10,       // gap between the paddle and boardgame
     paddleWidth: 8,
     paddleHeight:56,
-    ballRadius: 8,     
-    spaceBar: ' ', 
-    ballDirection: 1,
-    maxPoint:10,  //value of the score to be the winner
   }

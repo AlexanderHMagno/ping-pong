@@ -1,4 +1,4 @@
-import {SVG_NS , BACK_COLOR, PROPIEDADES} from '../settings'
+import {SVG_NS} from '../settings'
 
 
 
@@ -8,8 +8,6 @@ export default class Score{
     this.y = y;
     
   }
-
-
 
     render(svg,score){
    

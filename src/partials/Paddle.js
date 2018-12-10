@@ -1,4 +1,4 @@
-import {SVG_NS,PROPIEDADES} from '../settings'
+import {SVG_NS,PROPIEDADES,PaddleProperties} from '../settings'
 
 
 export default class Paddle{ 
@@ -19,12 +19,12 @@ export default class Paddle{
     document.addEventListener('keydown', event => {
         switch(event.key){
             case this.up:
-            this.position = Math.max(0, this.position - PROPIEDADES.speed);
+            this.position = Math.max(0, this.position - PaddleProperties.speed);
             this.colorPaddle = 'green';
             
             break;
             case this.down:
-            this.position = Math.min(this.height-this.paddleHeight,this.position+PROPIEDADES.speed)
+            this.position = Math.min(this.height-this.paddleHeight,this.position+PaddleProperties.speed)
             this.colorPaddle = 'red';
            
             
