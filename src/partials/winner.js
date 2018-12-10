@@ -4,7 +4,8 @@ import {SVG_NS , BACK_COLOR, PROPIEDADES} from '../settings'
 
 export default class Winner{
     constructor(x, y) {
-    this.x = 85;
+    this.x = 85
+    ;
     this.y = 130;
     this.pingp1= new Audio("public/sounds/player1.mp3");
     this.pingp2= new Audio("public/sounds/player2.mp3");
@@ -31,10 +32,10 @@ export default class Winner{
        text.setAttributeNS(null,'font-size',30);
        text.setAttributeNS(null,'font-family','"Silkscreen web", monotype');
         
-       if(score1===PROPIEDADES.maxPoint){
+       if(score1>=PROPIEDADES.maxPoint){
         text.textContent = `Player 1`;
         this.pingp1.play();
-       } else if (score2===PROPIEDADES.maxPoint) { 
+       } else if (score2>=PROPIEDADES.maxPoint) { 
 
         text.textContent = `Player 2 `;
         this.pingp2.play();

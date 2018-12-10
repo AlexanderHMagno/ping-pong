@@ -54,10 +54,10 @@ export default class Paddle{
   
 
     coordinates(){
-        const leftX =this.boardGap; 
-        const rightX = this.boardGap+ this.paddlewidth;
-        const topY = this.position;
-        const bottomY = this.position + this.paddleHeight;
+        const leftX =this.boardGap; // distance between this paddle and the board left paddle
+        const rightX = this.boardGap+ this.paddlewidth; // distance between this paddle and the board Right paddle
+        const topY = this.position; //top of the paddle
+        const bottomY = this.position + this.paddleHeight; //paddle's bottom
         return [leftX, rightX,topY,bottomY];
 
     }

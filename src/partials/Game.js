@@ -5,6 +5,7 @@ import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
 import Winner from './winner';
+import Laser from './Laser';
 
 
 export default class Game {
@@ -55,7 +56,7 @@ export default class Game {
 			PROPIEDADES.ballRadius,
 			this.width,
 			this.height,
-			"blue",
+			"white",
 			1,
 		)
 
@@ -63,7 +64,7 @@ export default class Game {
 			PROPIEDADES.ballRadius+10,
 			this.width,
 			this.height,
-			"blue",
+			"white",
 			1,
 		)
 
@@ -88,9 +89,24 @@ export default class Game {
 			this.height/3,
 		 )
 
-		 this.winnerGame = new Winner(
+		 this.winnerGame = new Winner()
+		 
+		 //initializa laser
 
+		 this.laser1 = new Laser(
+			this.width,
+			this.height,
+			PROPIEDADES.boardGap,
+			KEYS.p1Right,
 		 )
+
+		 this.laser2 = new Laser(
+			this.width,
+			this.height,
+			(this.width - PROPIEDADES.boardGap - PROPIEDADES.paddleWidth),
+			KEYS.p2Right,
+		 )
+
 
 		
 
@@ -144,6 +160,11 @@ export default class Game {
 		this.Score1.render(svg,this.player1.getScore());
 		this.Score2.render(svg,this.player2.getScore());
 
+		// laser
+
+		this.laser1.render(svg, this.player1 , this.player2 ,this.ballGame,this.ballGame1,this.ballGame2);
+		this.laser2.render(svg, this.player1 , this.player2 ,this.ballGame,this.ballGame1,this.ballGame2);
+
 //balls creator rendering
 
 		if(this.player1.score>=1&&this.player1.score<5){
@@ -154,13 +175,13 @@ export default class Game {
 			
 		}
        
-		if (this.player1.score ===PROPIEDADES.maxPoint||this.player2.score === PROPIEDADES.maxPoint) {						
+		if (this.player1.score >=PROPIEDADES.maxPoint||this.player2.score >= PROPIEDADES.maxPoint) {						
 			this.winnerGame.render(svg,this.player1.score,this.player2.score)
 		    this.resetGame();
 		}
 			
 		}
-	//	this.ballGame1.render(svg, this.player1 , this.player2);
+	
 		
 	}
 

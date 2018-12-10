@@ -8,6 +8,7 @@ export default class Ball {
         this.width = width; //size of the board
         this.height = height; //size of the board
         this.color = color;
+        this.colorReset = color;
         this.value= value;
         this.ping = new Audio("public/sounds/pong-01.wav");
         
@@ -17,7 +18,7 @@ export default class Ball {
 
     reset() {
         
-    
+        this.color= this.colorReset;
         this.x = (this.width/2); //position x of the ball
         this.y = this.height/2; // position Y of the ball
 
@@ -56,13 +57,13 @@ export default class Ball {
         //if the paddle touches the ball at the corner it will affect differently. 
             if((this.y <=bottom-5)&&(this.y >= top+5)){
                 this.vx*= -1;
-                console.log("Golpeo centro","left",left,"top",top,"bottom",bottom,"this y",this.y,"this.vy",this.vy,this.vx);
+                this.color = "gold";
                 
             } else {
                 this.vx*= -1 * Math.max(1,(Math.random() * 2)) ;
                 this.vy*=-1;
-                console.log("Golpeo esquina","left",left,"top",top,"bottom",bottom,"this y",this.y,"this.vy",this.vy,this.vx);
-           }
+                this.colorBall();
+                }
 
             this.ping.play();
 
@@ -76,13 +77,13 @@ export default class Ball {
          if(hit){
             if((this.y <=bottom-5)&&(this.y >= top+5)){
                 this.vx*= -1;
-                console.log("Golpeo centro","left",left,"top",top,"bottom",bottom,"this y",this.y,"this.vy",this.vy,this.vx);
+                this.color = "gold";
                 
             } else {
                 this.vx*= -1 * Math.max(1,(Math.random() * 2)) ;
                 this.vy*=-1;
-                console.log("Golpeo esquina","left",left,"top",top,"bottom",bottom,"this y",this.y,"this.vy",this.vy,this.vx);
-           }
+                this.colorBall();
+                }
 
             this.ping.play();
         }
@@ -111,9 +112,11 @@ export default class Ball {
 
     colorBall(){
          
-        var paleta = ["green","red"];
+        var paleta = ["#c03dc0","#800080","#f594f5"];
         var paletaColor = paleta[Math.floor(Math.random()*(paleta.length))]
         this.color = paletaColor;
+
+
        
         
     }
