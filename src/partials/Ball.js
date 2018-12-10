@@ -5,12 +5,12 @@ export default class Ball {
     constructor (radius, width, height,color,value) {
 
         this.radius = radius;
-        this.width = width;
-        this.height = height;
+        this.width = width; //size of the board
+        this.height = height; //size of the board
         this.color = color;
         this.value= value;
         this.ping = new Audio("public/sounds/pong-01.wav");
-        this.ballStart = new Audio("public/sounds/balllauncher.mp3");
+        
         this.reset();
         
 }
@@ -18,14 +18,16 @@ export default class Ball {
     reset() {
         
     
-        this.x = (this.width/2);
-        this.y = this.height/2;
+        this.x = (this.width/2); //position x of the ball
+        this.y = this.height/2; // position Y of the ball
+
+        // vy is the special additional effect that we can create for moving the ball
         this.vy=0;
         while(this.vy===0){
             this.vy = Math.floor(Math.random() * 10 - 5);}
         
         this.vx = PROPIEDADES.ballDirection * (6 - Math.abs(this.vy));
-        this.ballStart.play();
+        
         
     }
 
@@ -34,6 +36,7 @@ export default class Ball {
         const hitLeft = (this.x - PROPIEDADES.ballRadius <= 0) ;
         const hitRight = (this.x + PROPIEDADES.ballRadius>= this.width) ;
         const hitTop =(this.y - PROPIEDADES.ballRadius <=0);
+        
         const hitBottom =  (this.y + PROPIEDADES.ballRadius>= this.height);
         if(hitTop||hitBottom){
             this.vy*= -1;
@@ -50,19 +53,38 @@ export default class Ball {
        &&(this.y <=bottom)
        &&(this.y >= top);
         if(hit){
-            
-            this.vx*= -1;
-            this.ping.play();
-        }
+        //if the paddle touches the ball at the corner it will affect differently. 
+            if((this.y <=bottom-5)&&(this.y >= top+5)){
+                this.vx*= -1;
+                console.log("Golpeo centro","left",left,"top",top,"bottom",bottom,"this y",this.y,"this.vy",this.vy,this.vx);
+                
+            } else {
+                this.vx*= -1 * Math.max(1,(Math.random() * 2)) ;
+                this.vy*=-1;
+                console.log("Golpeo esquina","left",left,"top",top,"bottom",bottom,"this y",this.y,"this.vy",this.vy,this.vx);
+           }
 
+            this.ping.play();
+
+            
+        }
         } else {
         const [left,right,top,bottom] =  player1.coordinates();
         const hit = (this.x - this.radius <= right)
         &&(this.y <=bottom)
         &&(this.y >= top);
          if(hit){
-             this.vx*= -1;
-             this.ping.play();
+            if((this.y <=bottom-5)&&(this.y >= top+5)){
+                this.vx*= -1;
+                console.log("Golpeo centro","left",left,"top",top,"bottom",bottom,"this y",this.y,"this.vy",this.vy,this.vx);
+                
+            } else {
+                this.vx*= -1 * Math.max(1,(Math.random() * 2)) ;
+                this.vy*=-1;
+                console.log("Golpeo esquina","left",left,"top",top,"bottom",bottom,"this y",this.y,"this.vy",this.vy,this.vx);
+           }
+
+            this.ping.play();
         }
     }
     }
