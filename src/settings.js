@@ -14,7 +14,7 @@ export const KEYS = {
 
 export const PROPIEDADES = {
   score: 0,        // score for each player
-  maxPoint: 10,  //value of the score to be the winner
+  maxPoint: 20,  //value of the score to be the winner
 }
 
 export const WinnerValues = {
